@@ -1,0 +1,10 @@
+New student enrolled: 10001 Mario Rossi
+New student enrolled: 10002 Giuseppe Verdi
+New course activated: 11 Macro Economics Paul Krugman
+New course activated: 12 Object Oriented Programming James Gosling
+Student: 10000 signed up for the course10
+Student: 10001 signed up for the course10
+Student: 10001 signed up for the course11
+Student: 10000 took an exam in course 10 and won 27 points
+Student: 10001 took an exam in course 10 and won 30 points
+Student: 10001 took an exam in course 11 and won 28 points
