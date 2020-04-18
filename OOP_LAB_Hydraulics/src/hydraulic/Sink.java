@@ -16,13 +16,10 @@ public class Sink extends Element {
 		super(name);
 		//TODO: complete
 	}
-	@Override
 	public void setPortataI(double portata)
 	{
 		this.portataI=portata;
 	}
-	
-	@Override
 	public double getPortataI()
 	{
 		return this.portataI;
