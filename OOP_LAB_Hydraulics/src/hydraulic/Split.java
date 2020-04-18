@@ -49,7 +49,6 @@ public class Split extends Element {
 		}
 		System.out.println("Incorrect value for noutput!");	
 	}
-	@Override
 	public void setPortataI(double portata)
 	{
 		this.portataI = portata;
@@ -64,8 +63,6 @@ public class Split extends Element {
 	{
 		return this.portataU2;
 	}
-	
-	@Override
 	public double getPortataI()
 	{
 		return this.portataI;
