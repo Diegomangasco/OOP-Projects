@@ -23,7 +23,6 @@ public class Tap extends Element {
 	 * 
 	 * @param open  opening level
 	 */
-	@Override
 	public void setPortataI(double portata)
 	{
 		this.portataI=portata;
@@ -37,7 +36,6 @@ public class Tap extends Element {
 		}
 		//TODO: complete
 	}
-	@Override
 	public double getPortataI()
 	{
 		return this.portataI;
