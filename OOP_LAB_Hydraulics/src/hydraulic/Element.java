@@ -15,7 +15,6 @@ public class Element {
 	 */
 	private String name;
 	private Element uscita;
-	private double portataI;
 	public Element(String name){
 		this.name=name;
 	}
@@ -33,10 +32,6 @@ public class Element {
 	 * The given element will be connected downstream of this element
 	 * @param elem the element that will be placed downstream
 	 */
-	public void setPortataI(double portata)
-	{
-		this.portataI = portata;
-	}
 	public void connect(Element elem){
 		this.uscita = elem;
 	}
@@ -48,10 +43,4 @@ public class Element {
 	public Element getOutput(){
 		return this.uscita;
 	}
-	
-	public double getPortataI()
-	{
-		return this.portataI;
-	}
-	
 }
