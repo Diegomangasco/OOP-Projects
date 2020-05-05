@@ -6,10 +6,10 @@ package hydraulic;
  * The status of the source is defined through the method
  * {@link #setFlow(double) setFlow()}.
  */
-public class Source extends Element {
-	
-	private Element uscita = null;
+public class Source extends ElementExt {
+	private static final double MAX = 1000.0;
 	private double portata;
+	private double maxFlow;
 	public Source(String name) {
 		super(name);
 		//TODO: complete
@@ -20,12 +20,18 @@ public class Source extends Element {
 	 * 
 	 * @param flow
 	 */
-	public void setFlow(double flow){
-		this.portata=flow;
-	}
 	public double getPortata()
 	{
 		return this.portata;
+	}
+	public void setFlow(double portata)
+	{
+		this.portata=portata;
+	}
+	
+	@Override
+	public void setMaxFlow(double maxFlow) {
+		this.maxFlow = MAX;
 	}
 	
 }

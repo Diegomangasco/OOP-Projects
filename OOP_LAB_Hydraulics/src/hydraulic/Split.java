@@ -7,7 +7,7 @@ package hydraulic;
  * receive a stream that is half the input stream of the split.
  */
 
-public class Split extends Element {
+public class Split extends ElementExt {
 
 	/**
 	 * Constructor
@@ -63,6 +63,7 @@ public class Split extends Element {
 	{
 		return this.portataU2;
 	}
+	
 	public double getPortataI()
 	{
 		return this.portataI;

@@ -13,10 +13,10 @@ public class HSystem implements SimulationObserver{
 	 * Adds a new element to the system
 	 * @param elem
 	 */
-	private Element [] system = new Element[5];
-	private static int num_elements=0;
+	protected Element [] system = new Element [50];
+	protected static int num_elements=0;
 	public void addElement(Element elem){
-		system[num_elements]=elem;
+		system[num_elements]= elem;
 		num_elements++;
 	}
 	
@@ -41,12 +41,14 @@ public class HSystem implements SimulationObserver{
 		// TODO: to be implemented
 		return null;
 	}
-	public void simulateT(SimulationObserver observer, Element[] T, Element u, double portata)
+	private void simulateT(SimulationObserver observer, Element[] T, Element u, double portata)
 	{
-		Split e1;
-		Sink e2;
-		Tap e3;
-		String type;
+		Split e1 = null;
+		Sink e2 = null;
+		Tap e3 = null;
+		Multisplit e4 = null;
+		String type = null;
+		int i = 0;
 		while(u!=null)
 		{
 			if (u instanceof Tap) {
@@ -64,16 +66,25 @@ public class HSystem implements SimulationObserver{
 				observer.notifyFlow(type, e2.getName(), e2.getPortataI(), NO_FLOW);
 				u = u.getOutput();
 			}
-			if (u instanceof Split) {
-				type = "Split";
-				e1 = (Split)u;
-				e1.setPortataI(portata);
-				observer.notifyFlow(type, e1.getName(), e1.getPortataI(), e1.getPortataU1(), e1.getPortataU2());
-				portata=e1.getPortataU1();
-				T[0] = e1.getOutputs()[0];
-				T[1] = e1.getOutputs()[1];
-				simulateT(observer, T, T[0], portata);
-				simulateT(observer, T, T[1], portata);
+			if ((u instanceof Split) || (u instanceof Multisplit)) {
+				if(u instanceof Multisplit){
+					type = "Multisplit";
+					e4 = (Multisplit)u;
+					e4.setPortataI(portata);
+					observer.notifyFlow(type, e4.getName(), e4.getPortataI(), e4.getP());
+					T = e4.getOutputs();
+				}
+				else if(u instanceof Split){
+					type = "Split";
+					e1 = (Split)u;
+					e1.setPortataI(portata);
+					observer.notifyFlow(type, e1.getName(), e1.getPortataI(), e1.getPortataU1(), e1.getPortataU2());
+					T = e1.getOutputs();
+				}
+				for(Element a : T) {
+					simulateT(observer, T, T[i], type.compareTo("Split") == 0 ? e1.getPortataU1():e4.getPortataByIndex(i));
+					i++;
+				}
 				return;
 			}
 		}
@@ -87,7 +98,7 @@ public class HSystem implements SimulationObserver{
 		Element u;
 		Source e;
 		String type;
-		Element []T = new Element[2];
+		Element []T = null;
 		double portata = 0.0;
 		for(i=0;i<num_elements;i++)
 		{

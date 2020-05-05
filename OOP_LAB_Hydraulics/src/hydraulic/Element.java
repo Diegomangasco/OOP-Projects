@@ -43,4 +43,5 @@ public class Element {
 	public Element getOutput(){
 		return this.uscita;
 	}
+	
 }

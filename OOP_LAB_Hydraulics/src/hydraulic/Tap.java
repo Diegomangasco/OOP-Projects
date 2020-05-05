@@ -7,9 +7,8 @@ package hydraulic;
  * {@link #setOpen(boolean) setOpen()}.
  */
 
-public class Tap extends Element {
+public class Tap extends ElementExt {
 	
-	private Element uscita = null;
 	private double portataI;
 	private double portataU;
 	private boolean open1;
