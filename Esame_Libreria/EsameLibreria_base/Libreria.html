@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Programmazione ad Oggetti</title>
+</head>
+<body>
+<h2 style="text-align: center;">Libreria<br>
+</h2>
+Sviluppare un'applicazione che consenta di gestire una libreria.<br>
+Tutte le classi devono essere nel package "libreria".<br>
+
+<hr style="width: 100%; height: 2px;">
+
+<h3>R1 - Editori</h3>
+Il sistema viene gestito tramite un'istanza della classe <b>Libreria</b>.
+ <br>
+Le librerie deveno interagice con le case editrici, rappresentate
+dalla classe <b>Editore</b>;
+per creare un editore si utilizza il metodo <b>creaEditore()</b>
+della classe Libreria che riceve come parametri il nome dell'editore,
+i tempi medi di consegna (espressi in giorni) e l'indirizzo email di contatto 
+e restituisce un riferimento all'oggetto Editore creato.
+<br>
+I parametri sono accessibili tramite il metodi getter <b>getNome()</b>,
+<b>getTempoConsegna()</b> e <b>getEmail()</b> di Editore.
+<br>
+&Egrave; possibile ottenere un oggetto editore dato il nome tramite
+il metodo <b>getEditore()</b> di Libreria.
+<br>
+Il metodo <b>getEditori()</b> di Libreria restituisce l'elenco degli editor, ordinato
+alfabeticamente per nome.
+<br>
+
+<h3>R2 - Libri</h3>
+La libreria rivende dei libri che sono rappresentati dalla class <b>Libro</b>.
+Per creare un libro si utilizza il metodo <b>creaLibro()</b> che riceve come
+parametri il titolo, l'autore, l'anno di edizione, il prezzo e il nome dell'editore.
+<br>
+Se il nome dell'editore non corrisponde ad alcun editore precedentemente inserito
+viene generata un'eccezione di <b>EditoreInesistente</b>.
+<br>
+I parametri sono accessibili tramite i metodi getter <b>getTitolo()</b>, <b>getAutore()</b>,
+<b>getAnno()</b>, <b>getPrezzo()</b> e <b>getEditore()</b> di Libro.
+<br>
+&Egrave; possibile definire e conoscere la quantit&agrave; (numero di copie) 
+di un libro tramite i metodi <b>setQuantita()</b> e  <b>getQuantita()</b>.
+<br>
+&Egrave; possibile ricercare un libro per autore, titolo o entrambi con il metodo
+<b>getLibro()</b> che riceve come parametri l'autore e il titolo; uno dei due
+parametri pu&ograve; essere <code>null</code>, in tal caso la ricerca viene effettuata
+solo in base all'altro parametro. Se la ricerca risulta in pi&ugrave; libri
+ne viene restituito solo uno (a caso).
+<br>
+
+<h3>R3 - Vendita</h3>
+Quando i libri vengono venduti per aggiornare il conteggio dei libri
+si puo' utilizzare il metodo <b>registraVendita()</b> della classe Libro
+che riceve come parametro il numero della settimana (tra 1 e 52) e il mese
+(1-12) in cui è stata effettuata la vendita; questo metodo decrementa la 
+quantit&agrave; del libro e aggiorna il numero di copie venduta nella
+settimana e mese.
+<br>
+&Egrave; possibile sapere la classifica delle vendite per una certa settimana
+o mese tramite i metodi <b>getClassificaSettimana()</b> e 
+<b>getClassificaMese()</b> della classe Libreria che ricevono 
+come parametro la settimana o il mese e restituscono una collezione
+di libri ordinati per numero decrescente di copie vendute (nella settimana/mese dati).
+<br>
+
+<h3>R4 - Ordini</h3>
+Per i libri &egrave; possibile definire una soglia di guardia (raggiunta la quale
+&egrave; necessario fare un ordine) tramite il metodo <b>setParametri()</b> di Libro,
+che riceve come parametri la soglia e la quantit&agrave; da riordinare.
+<br>
+Quando la quantit&agrave; di un libro scende ed è pari alla soglia il sistema genera
+automaticamente un ordine.
+&Egrave; possibile sapere quali sono gli ordini effettuati tramite il metodo
+<b>getOrdini()</b> della classe Libreria, che restituisce un collezione
+di oggetti di classe <b>Ordine</b>.
+<br>
+Dato un ordine è possibile sapere l'editore a cui &egrave; stato spedito tramite
+il metodo <b>getEditore()</b>, il libro a cui si riferisce tramite il metodo
+<b>getLibro()</b>, la quantit&agrave; ordinata tramite il metodo <b>getQuantita()</b>
+e il numero dell'ordine tramite il metodo <b>getNumero()</b>. Il numero dell'ordine
+&egrave; un intero assegnato automaticamente, in maniera univoca agli ordini quando
+sono generati.
+<br>
+&Egrave; possibile sapere se &egrave; stato consegnato tramite il metodo <b>isConsegnato()</b>,
+inizialmente un ordine non &egrave; consegnato.
+Quando <i>fisicamente</i> vengono ricevuti i libri relativi ad un ordine si utilizza
+il metodo <b>ordineRicevuto()</b> della classe Libreria, che riceve come parametro il
+numero dell'ordine; questo metodo imposta l'ordine come consegnato e incrementa la
+quantit&agrave; del libro della quantit&agrave; dell'ordine.
+<br>
+
+<h3>R5 - Lettura da file</h3>
+Tramite il metodo <b>leggi()</b> della classe Libreria è possibile leggere le informazioni
+realitive a editori e libri. Il metodo riceve come parametro il path del file da leggere.
+Il file &egrave; di testo ed &egrave; organizzato a linee con campi separati 
+dal carattere ';'.
+<br>
+Ogni linea contiene informazioni relative a in editore o a un libro in funzione del
+primo campo che pu&ograve; contenere la lettera "E" oppure "L" rispettivamente.
+<br>
+Le linee di descrizione degli editori contengono, dopo il primo campo, i campi nome,
+ tempo di consegna ed email.
+<br>
+Le linee di descrizione dei libri contegono, dopo il primo campo, i campi titolo, autore, anno,
+prezzo, il nome dell'editore e la quantit&agrave;.
+<br>
+Il metodo deve ignorare le linee non conformi al formato sopra descritto.
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+</body>
+</html>
