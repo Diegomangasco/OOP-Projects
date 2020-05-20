@@ -115,14 +115,14 @@ public class Libreria {
     		if(linea[0] == 'E') {
     			linea2 = linea.toString();
     			String [] input = linea2.split(";");
-    			this.creaEditore(input[0], Integer.valueOf(input[1]).intValue(), input[2]);
+    			this.creaEditore(input[1], Integer.valueOf(input[2]).intValue(), input[3]);
     		}
     		else if (linea[0] == 'L') {
     			linea2 = linea.toString();
     			String [] input = linea2.split(";");
     			try {
-    				this.creaLibro(input[0], input[1], Integer.valueOf(input[2]).intValue(), 
-    						Double.valueOf(input[3]).doubleValue(), input[4]);
+    				this.creaLibro(input[1], input[2], Integer.valueOf(input[3]).intValue(), 
+    						Double.valueOf(input[4]).doubleValue(), input[5]);
     			}catch(EditoreInesistente E) {
     				System.err.println("ERRORE editore inesistente nel file di input");
     			}
