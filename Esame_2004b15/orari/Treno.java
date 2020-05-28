@@ -78,9 +78,9 @@ public class Treno {
 			  @Override
 			  public int compare(Passaggio P1, Passaggio P2) {
 				  if(P1.ritardo()>=P2.ritardo())
-					  return P1.ritardo();
+					  return 1;
 				  else
-					  return -P2.ritardo();
+					  return -1;
 			  }
 		  }).get().ritardo();
 	  }
