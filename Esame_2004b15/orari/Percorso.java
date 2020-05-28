@@ -79,9 +79,9 @@ public class Percorso {
 			  @Override
 			  public int compare(Treno T1, Treno T2) {
 				  if(T1.ritardoMassimo()>=T2.ritardoMassimo())
-					  return T1.ritardoMassimo();
+					  return 1;
 				  else
-					  return -T2.ritardoMassimo();
+					  return -1;
 			  }
 		  }).get().ritardoMassimo();
 	  }
