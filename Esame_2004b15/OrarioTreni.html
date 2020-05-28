@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>02CBI - Programmazione ad Oggetti</title>
+</head>
+<body>
+<h1 style="text-align: center;">Orario Treni<br>
+</h1>
+Sviluppare l&#8217;applicazione che consente di gestire l'orario dei treni e
+di monitorare i passaggi effettivi alle stazioni.<br>
+Tutte le classi devono essere nel package "orario".<br>
+<hr style="width: 100%; height: 2px;">
+<h2>R1 - Definizione Percorsi<br>
+</h2>
+Il sistema agisce tramite la classe <span style="font-weight: bold;">Orari</span>.
+<br>
+La prima fase dell'uso consiste nel definire i percorsi dei treni.<br>
+Il metodo <span style="font-weight: bold;">creaPercorso() </span>che
+accetta come parametro il codice (es. IC2345) e la categoria e crea un
+oggetto <span style="font-weight: bold;">Percorso</span>. La categoria
+di un treno pu&ograve; essere "Intercity", "Eurostar",
+"Interregionale", o "Regionale". La classe <span
+ style="font-weight: bold;">Percorso </span>che offre i metodi <span
+ style="font-weight: bold;">getCodice()</span>, <span
+ style="font-weight: bold;">getCategoria()</span> per leggere il codice
+e la categoria. I treni possono essere ordinari oppure straordinari,
+per definire il tipo si usa il metodo <span style="font-weight: bold;">setStraordinario()</span>
+che riceve un parametro boolean, inoltre &egrave; a disposizione il
+metodo <span style="font-weight: bold;">isStraordinario()</span> per
+conoscere il tipo. Un percorso per default non &egrave; straordinario.<br>
+E' possibile conoscere tutti i percorsi definiti nell'orario tramite il
+metodo <span style="font-weight: bold;">getPercorsi()</span> che
+restituisce una collezione di oggetti Percorso.<br>
+Inoltre &egrave; possibile usare il metodo <span
+ style="font-weight: bold;">getPercorso()</span> che riceve come
+parametro il codice di un percorso e restituisce l'oggetto
+corrispondente.<br>
+<h2>R2 - Fermate</h2>
+Ad un percorso &egrave; possibile aggiungere delle fermate presso le
+stazioni.<br>
+La classe Percorso fornisce il metodo <span style="font-weight: bold;">aggiungiFermata()</span>
+che riceve come parametri il nome della stazione, e l'orario previsto
+in ore e minuti. Questo metodo restituisce l'oggetto <span
+ style="font-weight: bold;">Fermata </span>corrispondente.<br>
+La classe Fermata offre i metodi <span style="font-weight: bold;">getStazione()</span>,
+<span style="font-weight: bold;">getOra()</span>, <span
+ style="font-weight: bold;">getMinuti()</span>.<br>
+Per ottenere l'elenco di tutte le fermate di un percorso si usa il
+metodo <span style="font-weight: bold;">getFermate() </span>della
+classe Percorso che restituisce la lista degli oggetti Fermata ordinati
+in base all'orario.<br>
+<h2>R3 - Treni</h2>
+I treni seguono i percorsi stabiliti e fanno dei passaggi presso le
+stazioni a certe ore.<br>
+La classe Orari offre il metodo <span style="font-weight: bold;">nuovoTreno()</span>
+che riceve come parametri il codice del percorso e la data in cui
+viaggia il treno e restituisce l'oggetto Treno corrsipondente.<br>
+Se il codice del percorso non corrisponde ad un percorso definito in
+precedenza viene generata l'eccezione di <span
+ style="font-weight: bold;">PercorsoNonValido</span>.<br>
+La classe <span style="font-weight: bold;">Treno </span>offre i
+metodi <span style="font-weight: bold;">getPercorso()</span>, <span
+ style="font-weight: bold;">getGiorno()</span>, <span
+ style="font-weight: bold;">getMese()</span> e <span
+ style="font-weight: bold;">getAnno()</span> per accedere alle
+informazioni sul percorso e alla data di viaggio.<br>
+Dato un percorso &egrave; possibile ottenere l'elenco dei treni che
+l'hanno percorso tramite il metodo <span style="font-weight: bold;">getTreni()</span>
+della classe Percorso: questo metodo restuisce la lista dei treni
+ordinata per data di viaggio decrescente.<br>
+<h2>R4&nbsp; - Passaggi</h2>
+I treni fanno dei passaggi presso le stazioni del percorso a certe ore.<br>
+La classe Treno offre il metodo <span style="font-weight: bold;">registraPassaggio()</span>
+che riceve come parametri il nome della stazione, l'ora ed i minuti del
+passaggio; il metodo restituisce l'oggetto Passaggio creato.<br>
+Se il nome della stazione non corrisponde ad una delle fermate del
+percorso seguito viene segnalata l'eccezione di <span
+ style="font-weight: bold;">StazioneNonValida</span>.<br>
+La classe <span style="font-weight: bold;">Passaggio </span>offre i
+metodo <span style="font-weight: bold;">getStazione()</span>, <span
+ style="font-weight: bold;">getOra()</span>, <span
+ style="font-weight: bold;">getMinuti()</span>.<br>
+Inoltre offre il metodo <span style="font-weight: bold;">ritardo()</span>
+che restituisce il ritardo rispetto all'orario previsto (definito nella
+fermata) espresso in minuti.<br>
+<h2>R5&nbsp; - Statistiche</h2>
+La classe Treno permette di ottenere alcune informazioni statistiche.<br>
+Il metodo <span style="font-weight: bold;">arrivato()</span>
+restisuisce un valore booleano che indica se il treno ha fatto la
+fermata presso l'ultima stazione.<br>
+I metodi <span style="font-weight: bold;">ritardoMassimo()</span>,<span
+ style="font-weight: bold;"> </span><span style="font-weight: bold;">ritardoFinale()</span>
+permettono di avere
+informazioni sui ritardi.<br>
+E' possibile calcolare le statistiche anche a livello di percorso.<br>
+La classe Percorso offre i metodi <span style="font-weight: bold;">ritardoMedio()</span>,<span
+ style="font-weight: bold;"></span> <span style="font-weight: bold;">ritardoFinale()</span>
+che restituiscono rispettivamente la media ed il massimo tra i ritardi
+finali dei treni che hanno seguito il percorso.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;"></span>
+</body>
+</html>
