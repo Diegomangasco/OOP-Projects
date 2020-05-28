@@ -81,7 +81,7 @@ public class Percorso {
 				  if(T1.ritardoMassimo()>=T2.ritardoMassimo())
 					  return T1.ritardoMassimo();
 				  else
-					  return T2.ritardoMassimo();
+					  return -T2.ritardoMassimo();
 			  }
 		  }).get().ritardoMassimo();
 	  }
