@@ -80,7 +80,7 @@ public class Treno {
 				  if(P1.ritardo()>=P2.ritardo())
 					  return P1.ritardo();
 				  else
-					  return P2.ritardo();
+					  return -P2.ritardo();
 			  }
 		  }).get().ritardo();
 	  }
