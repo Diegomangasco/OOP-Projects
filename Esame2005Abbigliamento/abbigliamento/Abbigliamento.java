@@ -53,7 +53,7 @@ public class Abbigliamento {
 			}
 			linea = bf.readLine();
 		}
-		
+		bf.close();
 	}
 
 	public Modello getModello(String name){
