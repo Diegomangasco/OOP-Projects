@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Programmazione ad Oggetti</title>
+</head>
+<body>
+<h1 style="text-align: center;">Magazzino<br>
+</h1>
+Sviluppare l&#8217;applicazione che consente di gestire collezioni di
+abbigliamento.<br>
+Tutte le classi devono essere nel package "abbigliamento".<br>
+<hr style="width: 100%; height: 2px;">
+<h2>R1 - Definizione Modelli<br>
+</h2>
+I modelli vengono definiti tramite la clase <span
+ style="font-weight: bold;">Modello</span>, il cui costruttore riceve
+come paremetri: il nome del modello, il costo fisso per unit&agrave; e
+la quantit&agrave; di tessuto richiesta per confezionare il modello
+espressa in metri quadri.<br>
+Deve essere possibile conoscere i valori passati al costruttore tramite
+dei metodi getter: <span style="font-weight: bold;">getNome()</span>, <span
+ style="font-weight: bold;">getCosto()</span>, <span
+ style="font-weight: bold;">getQuantita()</span>.<br>
+<h2>R2 - Definizione Materiali e Colori<br>
+</h2>
+I materiali sono rappresentati dalla classe <span
+ style="font-weight: bold;">Materiale</span>, il cui costruttore riceve
+come parametri: il nome ed il costo al metro quadro. Tramite i metodi <span
+ style="font-weight: bold;">getNome()</span> e <span
+ style="font-weight: bold;">getCosto()</span> &egrave; possibilie
+conoscere nome e costo.<br>
+I colori sono rappresentati dalla classe <span
+ style="font-weight: bold;">Colore</span>, il cui
+costruttore riceve come parametro il nome. Il nome &egrave; accessibile
+tramite il metodo <span style="font-weight: bold;">getNome()</span>.<br>
+<h2>R3 - Definizione dei Capi<br>
+</h2>
+I capi sono definiti in termini di modelli confezionati con un certo
+materiale. Il costruttore della classe <span style="font-weight: bold;">Capo
+</span>riceve come parametri il modello, il materiale, e il colore.<br>
+Il metodo <span style="font-weight: bold;">prezzo()</span> permette di
+calcolare il prezzo di un singolo capo: <br>
+<br>
+<div style="text-align: center;"><span style="font-style: italic;">prezzo
+= costoFisso + quantit&agrave;Materiale * costoMateriale</span><br>
+</div>
+<br>
+Deve essere possibile stampare un capo tramite il metodo <span
+ style="font-weight: bold;">toString()</span> che restituisce una
+stringa strutturata come segue:<br>
+<code>&lt;modello&gt; &lt;colore&gt; di &lt;materiale&gt;</code>, ad
+esempio <span style="font-size: 9pt; font-family: &quot;Courier New&quot;;"
+ lang="IT">t-shirt
+rosa di cotone.</span><br>
+<h2>R4&nbsp; - Collezione<br>
+</h2>
+Una collezione &egrave; un insieme di capi ed &egrave; rappresentata
+dalla classe <span style="font-weight: bold;">Collezione</span>.<br>
+E' possibile aggiungere un capo ad una collezione tramite il metodo <span
+ style="font-weight: bold;">add()</span>.<br>
+La classe Collezione definisce una serie di metodi per ricercare capi
+all'interno di una collezione. Il metodo <span
+ style="font-weight: bold;">trova()</span> viene definito in tre
+varianti che hanno come parametro un Modello, un Colore, un Materiale.
+Il metodo restituisce una collezione di Capi che utilizzano il modello,
+colore, o materiale specificato.<br>
+<br>
+<h2>R5&nbsp; - Lettura da file<br>
+</h2>
+&Egrave; possibile leggere le informazioni da file. La lettura viene
+gestita dalla classe Abbigliamento, tramite il metodo <span
+ style="font-weight: bold;">leggiFile()</span>.<br>
+Le informazioni sono memorizzate, un elemento per linea.<br>
+I modelli sono definiti in linee che iniziano con MOD, seguiti da nome,
+costo fisso e quantita' di materiale, tutti separati da ";".<br>
+I colori sono definiti in linee che iniziano con COL, seguiti da nome,
+separati da ";".<br>
+I materiali sono definiti in linee che iniziano con MAT, seguiti da
+nome e costo del materiale, tutti separati da ";".<br>
+I capi sono definiti in linee che iniziano per CAP, seguiti da nome,
+nome del modello, nome del materiale, e nome del colore, tutti separati
+da ";".<br>
+Le collezioni sono descritte in linee che iniziano con COL, seguito dai
+nomi dei capi tutti separati da ";".<br>
+<br>
+Dopo la lettura si possono usare i metodi: <span
+ style="font-weight: bold;">getModello()</span>, <span
+ style="font-weight: bold;">getColore()</span>, <span
+ style="font-weight: bold;">getMateriale()</span>, <span
+ style="font-weight: bold;">getCapo()</span>, e <span
+ style="font-weight: bold;">getCollezione()</span>. Essi ricevono come
+parametro il nome e restituiscono l'elemento corrispondente.<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;"></span>
+</body>
+</html>

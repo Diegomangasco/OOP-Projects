@@ -1,0 +1,11 @@
+MOD;pantalone;5.0;2.0
+MOD;camicia;9.0;1.5
+COL;blu
+COL;bianco
+COL;rosso
+MAT;cotone;10.0
+MAT;lino;15.0
+CAP;c1;pantalone;cotone;blu
+CAP;c2;camicia;lino;bianco
+CAP;c3;camicia;cotone;rosso
+COL;estate;c1;c2;c3
