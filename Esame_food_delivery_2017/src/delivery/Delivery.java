@@ -108,7 +108,7 @@ public class Delivery {
         		})
         		.collect(Collector.of(ArrayList<String>::new, 
         				(List<String> a, Entry<String, Menu> b) -> {a.add(Formattatore(b));}, 
-        				(List<String> a, List <String> b) -> {return a;}, (List<String> a) -> {return a;}));
+        				(List<String> a, List <String> b) -> {a.addAll(b); return a;}, (List<String> a) -> {return a;}));
     }
     private String Formattatore(Entry<String, Menu> E) {
     	return "[" + E.getValue().getCategoria() + "]" + " " + E.getValue().getDescrizione() + " : " + String.format("%.2f", E.getValue().getPrezzo());
