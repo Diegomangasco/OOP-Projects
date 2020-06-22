@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<style>
+<!--
+body {
+	margin: 0.5cm;
+	/*
+	font-size: 13px;
+	*/
+	}
+p   {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+    }
+b   {
+	font-family: "Courier New";
+	color: MidnightBlue;
+	background: #f8f8f8;
+	border-radius: 2pt;
+	padding: 1pt;
+/*
+    font-size=85%;
+	border: 1pt dotted silver;
+*/
+	}
+	
+i   {
+	color: Navy;
+	font-family: "Courier New";
+	}
+	
+h1  {
+	font-family: sans-serif;
+	text-align: center;
+    line-height: 1.1em;
+	}
+	
+h2  {
+	color: RoyalBlue;
+	font-family: sans-serif;
+	border-top: 1px dotted gray;
+	}
+.hint {
+    color:LightSlateGray;
+    margin-left:10ch;
+    margin-right:10ch;
+    text-indent:-5ch;
+    }
+.hint b {
+	font-family: inherit;
+	color: MidnightBlue;
+	background: inherit;
+	border-radius: inherit;
+	padding: inherit;
+    }
+.hint i {
+	color: gray;
+    }
+
+@media print {
+body {
+	font-size: 10pt;
+	}
+
+  h2 {
+  	float:left;
+    margin-top: 0;
+    padding: 5px 15px 5px 0px;
+    line-height: 0.8em;
+  	}
+}
+table {
+	float: right;
+	margin: 20px;
+	border-collapse:collapse;
+	border-bottom: 1px solid Navy;
+	border-top: 1px solid Navy;
+	}
+td, th  {
+	padding: 1px 5px 1px 5px;
+	}
+tr:nth-child(even) {
+    background-color: PowderBlue;
+    margin: 1pt solid PowderBlue;
+}
+-->
+</style>
+	<title>Requirements</title>
+</head>
+
+<body lang=IT >
+
+<h1>Restaurants</h1>
+<p>
+Develop a program that allows managing a restaurant chain.
+<p>
+All the classes are located in the package <b>restaurantChain</b>. 
+The class <b>MainClass</b> in package <i>main</i> provides some examples of usage of the main methods.
+
+<p>The <a href="http://softeng.polito.it/courses/docs/api/index.html"
+target="_blank">JDK documentation</a> is available in a local server.</p>
+
+<h2>R1: Restaurant chain</h2>
+<p>
+The class <b>Chain</b> represents a chain of restaurants and provides the following methods.
+<p>
+The method <b>addRestaurant()</b> allows adding a new restaurant in the chain,
+ and accepts two arguments: the name of the restaurant and the name of the tables available
+ in the restaurant; if the name is already taken an <i>InvalidName</i> exception is raised.
+<p>
+The method <b>getRestaurant()</b> accepts the name of a restaurant and returns the relative 
+	object of type <b>Restaurant</b>; if the name does not correspond to a restaurant
+	present in the chain an <i>InvalidName</i> exception is raised.
+
+<h2>R2: Restaurants</h2>
+
+<p>
+The class <i>Restaurant</i> represents a restaurant and provide the following methods.
+<p>
+The method <b>getName()</b> returns the name of the restaurant.
+<p>
+The method <b>addMenu()</b> allows adding a menu to the restaurant listing, 
+  it accepts two arguments: the name of the menu and the relative price; 
+  if the name of the menu is already taken an <i>InvalidName</i> exception is raised.
+<p>
+The method <b>reserve()</b> allows a group of customers to reserve some tables;
+ it receives two arguments: the name of the group representative and the number of
+ customers in the group; if the name of the representative is already taken 
+ an <i>InvalidName</i> exception is raised.
+<br>
+The customers are seated at tables with four seats each, that can are reserved for the group.
+If the available tables are not enough, the operation is rejected.<br>
+The method returns the number of tables reserved for the group (zero if not enough tables are available).
+<p>
+The method <b>getRefused()</b> returns the total number of customers that could not be
+accommodated due to lack of tables.
+<p>
+The method  <b>getUnusedTables()</b> returns the number of tables in the restaurant that 
+are currently not reserved.
+
+
+<h2>R3: Orders</h2>
+
+<p>
+The class <i>Restaurant</i> allows managing the orders and the payments.
+<p>
+The method <b>order()</b> allows a group of customers, sitting the tables, to place an order.
+The methods accepts the name of the group representative and a sequence of menu names;
+if the name of the representative is not among those who reserved the tables
+ throws an <i>InvalidName</i> exception.<br>
+ The order is accepted only if the number of menus (present in the sequence)
+ is greater or equal to the number of customers belonging to the group;
+ the method returns a boolean value indicating whether the order has been accepted.<br>
+ If the names of the menus in the order are not all in the listing of the restaurant,
+ the method throws an <i>InvalidName</i> exception.
+<p>
+The method  <b>getUnordered()</b> returns the list, in alphabetic order, of the names of the
+group representatives having tables that have not yet placed an order. 
+<p>
+The method  <b>pay()</b> accepts the name of a group representative and allow him/her
+to pay the order (that is the sum of the ordered menus);
+if the name of the representative is not among those who reserved some tables 
+an <i>InvalidName</i> exception is raised.<br>
+The methods returns the total amount payed (zero if the group has placed no orders yet).
+<p>
+The method  <b>getUnpaid()</b> returns the list, in alphabetic order, of the names of
+the representatives of the groups that have not payed yet.
+ <p>
+The method  <b>getIncome()</b> returns the total amout received in payments by the restaurant.
+
+<h2>R4: Reports</h2>
+
+<p>
+The following methods of the <i>Chain</i> class allow to compare the trends of different restaurants
+belonging to the chain.
+<p>
+The method <b>sortByIncome()</b> returns the list of restaurants sorted by decreasing amount of received payments.
+<p>
+The method <b>sortByRefused()</b>b returns the list of restaurants sorted by increasing number of 
+	people whose reservation could not be accepted due to lack of tables. 
+<p>
+The method <b>sortByUnusedTables()</b> returns the list of restaurants sorted by ascending number
+of unused tables.
+
+</body>
+
+</html>

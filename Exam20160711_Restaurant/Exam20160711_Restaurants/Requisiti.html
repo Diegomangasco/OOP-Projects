@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<style>
+<!--
+body {
+	margin: 0.5cm;
+	/*
+	font-size: 13px;
+	*/
+	}
+p   {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+    }
+b   {
+	font-family: "Courier New";
+	color: MidnightBlue;
+	background: #f8f8f8;
+	border-radius: 2pt;
+	padding: 1pt;
+/*
+    font-size=85%;
+	border: 1pt dotted silver;
+*/
+	}
+	
+i   {
+	color: Navy;
+	font-family: "Courier New";
+	}
+	
+h1  {
+	font-family: sans-serif;
+	text-align: center;
+    line-height: 1.1em;
+	}
+	
+h2  {
+	color: RoyalBlue;
+	font-family: sans-serif;
+	border-top: 1px dotted gray;
+	}
+.hint {
+    color:LightSlateGray;
+    margin-left:10ch;
+    margin-right:10ch;
+    text-indent:-5ch;
+    }
+.hint b {
+	font-family: inherit;
+	color: MidnightBlue;
+	background: inherit;
+	border-radius: inherit;
+	padding: inherit;
+    }
+.hint i {
+	color: gray;
+    }
+
+@media print {
+body {
+	font-size: 10pt;
+	}
+
+  h2 {
+  	float:left;
+    margin-top: 0;
+    padding: 5px 15px 5px 0px;
+    line-height: 0.8em;
+  	}
+}
+table {
+	float: right;
+	margin: 20px;
+	border-collapse:collapse;
+	border-bottom: 1px solid Navy;
+	border-top: 1px solid Navy;
+	}
+td, th  {
+	padding: 1px 5px 1px 5px;
+	}
+tr:nth-child(even) {
+    background-color: PowderBlue;
+    margin: 1pt solid PowderBlue;
+}
+-->
+</style>
+	<title>Requisiti</title>
+</head>
+
+<body lang=IT >
+
+<h1>Restaurants</h1>
+<p>
+Si sviluppi un programma che permetta di gestire una catena di ristoranti.
+<p>
+Tutte le classi si trovano nel package
+<b>restaurantChain</b>. La classe <b>MainClass</b> nel package main presenta esempi di uso dei metodi principali.
+
+<p>La <a href="http://softeng.polito.it/courses/docs/api/index.html"
+target="_blank">documentazione JDK</a> è disponibile su un server local.</p>
+
+<h2>R1: Restaurant chain</h2>
+<p>
+La classe <b>Chain</b>  rappresenta una catena di ristoranti e fornisce i seguenti metodi:
+<p>
+- Il metodo <b>addRestaurant()</b> permette di aggiungere un ristorante alla catena, 
+ e riceve due argomenti: il nome del ristorante e il numero di tavoli presenti nel ristorante; 
+ se il nome è già presente nella catena, solleva l’eccezione <i>InvalidName</i>.
+<p>
+- Il metodo <b>getRestaurant()</b> riceve il nome di un ristorante e restituisce 
+  l’oggetto di tipo <b>Restaurant</b> corrispondente; se il nome non è tra quelli presenti nella catena, 
+  solleva l’eccezione <i>InvalidName</i>.
+
+<h2>R2: Restaurants</h2>
+
+<p>
+La classe Restaurant rappresenta un ristorante e fornisce i seguenti metodi:
+<p>
+- Il metodo <b>getName()</b> restituisce il nome del ristorante.
+<p>
+- Il metodo <b>addMenu()</b> permette di aggiungere un menù alla carta del ristorante, 
+  e riceve due argomenti: il nome del menù ed il suo prezzo; se il nome è già presente nella carta, 
+  solleva l'eccezione <i>InvalidName</i>.
+<p>
+- Il metodo <b>reserve()</b> permette ad un gruppo di commensali di riservare dei tavoli, 
+  e riceve due argomenti: il nome di un referente del gruppo, ed il numero di commensali; 
+  se il nome è già stato usato da un altro gruppo, solleva l’eccezione <i>InvalidName</i>.
+<p>
+I commensali vengono disposti su tavoli da quattro posti ciascuno, che vengono riservati al gruppo. 
+Se i tavoli disponibili non sono sufficienti, l’operazione viene rifiutata.
+Il metodo restituisce il numero di tavoli riservati al gruppo (zero se non ci sono tavoli a sufficienza).
+<p>
+- Il metodo <b>getRefused()</b> restituisce il numero totale di persone che non sono state accolte 
+nel ristorante  per mancanza di tavoli.
+<p>
+- Il metodo <b>getUnusedTables()</b> restituisce il numero dei tavoli del ristorante che 
+  non sono stati utilizzati.
+
+
+<h2>R3: Orders</h2>
+
+<p>
+- Il metodo <b>order()</b> permette ad un gruppo di commensali, seduti ai tavoli del ristorante, 
+  di effettuare un’ordinazione.
+Il metodo riceve il nome del referente del gruppo, ed una sequenza di nomi di menù; 
+se il nome del referente non è tra quelli che hanno riservato tavoli, solleva l’eccezione <i>InvalidName</i>.
+L’ordinazione viene accettata soltanto se il numero dei menù ordinati (presenti nella sequenza) 
+è maggiore o uguale al numero dei commensali appartenenti al gruppo; il metodo restituisce il valore booleano 
+<i>false</i> se l’ordinazione non è accettata.
+Se i nomi dei menù indicati nell’ordinazione non sono tutti presenti nella carta del ristorante, 
+il metodo solleva l’eccezione <i>InvalidName</i>.
+<p>
+- Il metodo <b>getUnordered()</b> restituisce l’elenco, in ordine alfabetico, 
+  dei nomi di referenti di gruppo che hanno tavoli riservati ma non hanno ancora effettuato l’ordinazione.
+<p>
+- Il metodo <b>pay()</b> riceve il nome di un referente di gruppo e gli permette di saldare 
+il conto della sua ordinazione (cioè la somma dei prezzi dei menù ordinati); 
+se il nome del referente non è tra quelli che  hanno riservato tavoli, solleva l’eccezione <i>InvalidName</i>.
+Il metodo restituisce l’importo pagato (zero se il gruppo non ha ancora effettuato l’ordinazione).
+<p>
+- Il metodo <b>getUnpaid()</b> restituisce l’elenco, in ordine alfabetico, 
+ dei nomi di referenti di gruppo che hanno effettuato l’ordinazione ma non hanno ancora pagato il conto.
+<p>
+- Il metodo <b>getIncome()</b> restituisce il totale delle somme incassate dal ristorante.
+
+
+<h2>R4: Reports</h2>
+
+<p>
+I seguenti metodi della classe <b>Chain</b> permettono di confrontare l’andamento dei ristoranti 
+ appartenenti alla catena:
+<p>
+- <b>sortByIncome()</b> restituisce l’elenco dei ristoranti ordinato per valori decrescenti delle somme incassate.
+<p>
+- <b>sortByRefused()</b>b restituisce l’elenco dei ristoranti ordinato per valori crescenti 
+  del numero di persone non accolte per mancanza di tavoli.
+<p>
+- <b>sortByUnusedTables()</b> restituisce l’elenco dei ristoranti ordinato per valori crescenti 
+  del numero di tavoli non utilizzati.
+
+</body>
+
+</html>
