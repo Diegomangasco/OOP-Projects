@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Requirements</title>
+<style type="text/css">
+<!--
+body {
+	margin: 0.5cm;
+	/*
+	font-size: 13px;
+	*/
+	}
+p   {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+    }
+b   {
+	font-family: monospace;
+	color: MidnightBlue;
+	background: #f8f8f8;
+	border-radius: 2pt;
+	padding: 1pt;
+/*
+    font-size=85%;
+	border: 1pt dotted silver;
+*/
+	}
+	
+i   {
+	color: Navy;
+	font-family: monospace;
+	}
+	
+h1  {
+	font-family: sans-serif;
+	text-align: center;
+    line-height: 1.1em;
+	}
+	
+h2  {
+	color: RoyalBlue;
+	font-family: sans-serif;
+	border-top: 1px dotted gray;
+	}
+@media print {
+body {
+	font-size: 10pt;
+	}
+
+  h2 {
+  	float:left;
+    margin-top: 0;
+    padding: 5px 15px 5px 0px;
+    line-height: 0.8em;
+  	}
+}
+table {
+	float: right;
+	margin: 20px;
+	border-collapse:collapse;
+	border-bottom: 1px solid Navy;
+	border-top: 1px solid Navy;
+	}
+td, th  {
+	padding: 1px 5px 1px 5px;
+	}
+tr:nth-child(even) {
+    background-color: PowderBlue;
+    margin: 1pt solid PowderBlue;
+}
+-->
+</style>
+</head>
+<body>
+<h1>Jop Applications Handling</h1>
+<p>
+Develop a program to manage the job applications that a company receive for open positions.
+The main class is <b>HandleApplications</b>; all the classes classes are in the package <b>applications</b>.
+    The class <b>Test</b> contains a sample code that illustrates the usage of the main methods.<br>
+    The exceptions thrown by the program are of type <b>ApplicationException</b>.
+
+<p>
+You can access a copy of the <a href="http://softeng.polito.it/courses/docs/api/index.html" target="api">JDK documentation</a>  on a local server.
+</p>
+
+
+
+<h2>R1: Skills and Positions</h2>
+
+The method <b>addSkills()</b> add a list of competencies given their names as a variable list of strings. It throws and exception if
+    it finds any duplicate skill.<p>
+    
+The method <b>addPosition()</b> add a new position (given its name) with the list of the required skills (whose names
+    are provided. It throws an exception is a position with the same name has been alredy added or if any
+    of the required skills has not been already added.<p>
+    
+The method <b>getSkill()</b> returns a <b>Skill</b> object given the corresponding name or <i>null</i> if not found.
+    <p>
+The <b>getPositions()</b> method from class <i>Skill</i> provides the list of position that require that skill,
+        sorted by name.
+The method <b>getPosition()</b> returns a <b>Position</b> object given its name, or <i>null</i> if not found.
+<p>
+Both <i>Skill</i> and <i>Position</i> provide the getter <b>getName()</b>.
+<!--
+<p>
+<span style="font-weight:bold;">Hint</span>: a variable arguments list is declared as <i>method(String ... ss)</i>
+    and can be invoked as <i>method("A","B","C");</i>. Inside the method the variable argument <i>ss</i> 
+    is converted to an array, as if it were declared as <i>String[] ss</i>.
+-->
+
+
+<h2>R2: Applicants</h2>
+    
+The method <b>addApplicant()</b> enters a new applicant (with the name) and his/her capabilities as a single string,
+    e.g. <i>"java:9,sql:7"</i>. Every capability is represented as the name of a skill, separated by <i>':'</i>, and
+    the level (from 1 to 10) held by the applicant. Le individual capabilities are separated by commas (<i>','</i>).
+    The method throws an exception if the applicant has already been added, the capability skill is not present, or
+    the capability level is not in the valid range.
+    <p>
+The method <b>getCapabilities()</b> returns the list of capabilities of an applicant (given its name)
+        with the format described above; the capabilities are sorted alphabetically.
+        If not capabilities are provided it returns the empty string.
+        The method throws an exception if the applicant is not found.
+    
+        
+        
+<h2>R3: Applications</h2>
+    
+The method <b>enterApplication()</b> allows an applicant to apply for a position. It throws an exception if the applicant or the the position are not present, if the applicant has not a capacity corresponding to each skill required by the position, or if the applicant already applied for any position.<br>
+    For instance, if the position requires skills <i>uml</i> and <i>java</i>, the applicant must possess
+    among her capabilities, one for <i>java</i> and one for <i>uml</i>.
+    <p>
+The method <b>getApplicants()</b> of class <i>Position</i> returns a list of the candidates sorted alphabetically.
+
+
+
+<h2>R4: Winners</h2>
+    
+The method <b>setWinner()</b> defines the winner applicant for a given position. It throws an exception if the
+    applicant did not apply for the position, if the position has already a winner, or if the sum of the levels
+    of the capabilities, whose skills are required by the position, is not greater than six times the number
+    of required skills.
+    The method returns the sum of the levels of the capabilities which correspond to required capabilities.
+<p>
+The method <b>getWinner()</b> of class <i>Position</i> returns the name of the winner or null if missing.
+
+
+
+<h2>R5: Statistics</h2>
+    
+    
+The metod <b>skill_nApplicants()</b>returns the number of applicants per skill, the skill are sorted alphabetically 
+    by name.
+    <p>
+The method <b>maxPosition()</b> returns the name of the position with the highest number of candidate.
+
+</body>
+</html>

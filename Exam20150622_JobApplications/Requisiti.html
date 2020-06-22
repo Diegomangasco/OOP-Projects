@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Requisiti</title>
+<style type="text/css">
+<!--
+body {
+	margin: 0.5cm;
+	/*
+	font-size: 13px;
+	*/
+	}
+p   {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+    }
+b   {
+	font-family: monospace;
+	color: MidnightBlue;
+	background: #f8f8f8;
+	border-radius: 2pt;
+	padding: 1pt;
+/*
+    font-size=85%;
+	border: 1pt dotted silver;
+*/
+	}
+	
+i   {
+	color: Navy;
+	font-family: monospace;
+	}
+	
+h1  {
+	font-family: sans-serif;
+	text-align: center;
+    line-height: 1.1em;
+	}
+	
+h2  {
+	color: RoyalBlue;
+	font-family: sans-serif;
+	border-top: 1px dotted gray;
+	}
+@media print {
+body {
+	font-size: 10pt;
+	}
+
+  h2 {
+  	float:left;
+    margin-top: 0;
+    padding: 5px 15px 5px 0px;
+    line-height: 0.8em;
+  	}
+}
+table {
+	float: right;
+	margin: 20px;
+	border-collapse:collapse;
+	border-bottom: 1px solid Navy;
+	border-top: 1px solid Navy;
+	}
+td, th  {
+	padding: 1px 5px 1px 5px;
+	}
+tr:nth-child(even) {
+    background-color: PowderBlue;
+    margin: 1pt solid PowderBlue;
+}
+-->
+</style>
+</head>
+<body>
+<h1>Gestione Domande di Impiego</h1>
+<p>
+Il programma permette ad un'azienda di ricevere domande per posizioni scoperte. La classe principale &egrave; <b>HandleApplications</b>; le classi del programma si trovano nel package <b>applications</b>. La classe di test 
+    (<b>Test</b>) contiene un esempio che illustra l'uso dei metodi principali; &egrave; utile leggere i requisiti guardando questa classe. Le eccezioni lanciate dal programma sono di tipo <b>ApplicationException</b>.
+
+<p>
+&Egrave; possibile accedere ad una copia locale della 
+<a href="http://softeng.polito.it/courses/docs/api/index.html" target="api">documentazione JDK</a>.
+</p>
+    
+    
+<h2>R1: Inserimento di skills e positions</h2>
+    
+Il metodo <b>addSkills</b> inserisce un elenco di competenze dati i nomi. Lancia un'eccezione se trova una competenza duplicata.
+<p>
+Il metodo <b>addPosition</b> inserisce una posizione (dato il nome) con l'elenco delle competenze richieste (di cui sono dati i nomi). Lancia un'eccezione se la posizione &egrave; gi&agrave; stata inserita o se non trova una competenza richiesta tra quelle gi&agrave; inserite. 
+<p>
+Il metodo <b>getSkill</b> fornisce un oggetto <b>Skill</b> dato il nome; se non lo trova tra quelli inseriti d&agrave; null.
+<p>
+Il metodo <b>getPositions</b> di <i>Skill</i> d&agrave; la lista delle posizioni che chiedono lo skill, ordinate alfabeticamente per nome. Il metodo <b>getPosition</b> fornisce un oggetto <b>Position</b> dato il nome; se non lo trova tra quelli inseriti d&agrave; null. <i>Skill</i> e <i>Position</i> hanno i getter <b>getName</b>.
+
+<!--
+<p>
+<span style="font-weight:bold;">Suggerimento</span>: una lista variabile di argomenti può essere dichiarata come <i>method(String ... ss)</i> e può essere invocato come <i>method("A","B","C");</i>. 
+All'interno del metodo l'argomento variabile <i>ss</i> viene convertito in un array come se fosse
+    dichiarato come <i>String[] ss</i>.
+-->
+
+    
+<h2>R2: Inserimento di richiedenti</h2>
+    
+Il metodo <b>addApplicant</b> inserisce un richiedente (dato il nome) con l'elenco delle sue capacit&agrave; (capabilities). Un esempio di elenco &egrave; il seguente: <i>"java:9,sql:7"</i>. Ogni capacit&agrave; &egrave; costituita dal nome della competenza, dal separatore <i>':'</i>, e dal livello (compreso tra 1 e 10) posseduto dal richiedente. Le capacit&agrave; sono separate da virgole. Il metodo lancia un'eccezione se il richiedente &egrave; gi&agrave; stato inserito, una competenza non &egrave; stata inserita, un livello non appartiene al range stabilito.
+<p>
+Il metodo <b>getCapabilities</b> fornisce l'elenco delle capacit&agrave; di un richiedente (dato il nome) nel formato indicato sopra: le capacit&agrave; sono per&ograve; ordinate alfabeticamente. Lancia un'eccezione se non trova il richiedente tra quelli gi&agrave; inseriti. Se non ci sono capacit&agrave; d&agrave; la stringa vuota.
+
+    
+    
+<h2>R3: Candidature</h2>
+
+    Il metodo <b>enterApplication</b> permette ad un richiedente di candidarsi ad una posizione. Lancia un'eccezione se il richiedente o la posizione non sono stati inseriti, se il richiedente non ha una capacit&agrave; per ciascuno skill richiesto dalla posizione o si &egrave; gi&agrave; candidato ad una posizione. Ad esempio, se la posizione chiede gli skill java e uml, il richiedente deve avere tra le sue capabilities quella per java e quella per uml.
+<p>
+Il metodo <b>getApplicants</b> di <i>Position</i> fornisce la lista ordinata alfabeticamente dei nomi dei candidati alla posizione.
+
+<h2>R4: Vincitori</h2>
+Il metodo <b>setWinner</b> stabilisce il vincitore (richiedente) per una posizione. Lancia un'eccezione se il richiedente non si &egrave; candidato alla posizione, se c'&egrave; gi&agrave; un altro vincitore per la stessa posizione, o se la somma delle capacit&agrave; relative agli skill della posizione non &egrave; maggiore del numero degli skill moltiplicati per 6 (ad es. per una posizione con 2 skill la soglia da superare &egrave; 12). Fornisce la somma delle capacit&agrave; del vincitore.
+<p>
+Il metodo <b>getWinner</b> di <i>Position</i> d&agrave; il nome del vincitore o null se manca.
+
+<h2>R5: Statistiche</h2>
+Il metodo <b>skill_nApplicants</b> d&agrave; il numero di richiedenti per skill; gli skill sono ordinati alfabeticamente per nome.
+<p>
+Il metodo <b>maxPosition</b> d&agrave; il nome della posizione con il maggior numero di candidati.
+
+    </body>
+</html>
